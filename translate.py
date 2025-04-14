@@ -9,31 +9,31 @@ from langserve import add_routes
 from dotenv import load_dotenv
 load_dotenv()
 
-# 1. Create prompt template
+# Codza "1. Adım: Prompt şablonunu oluştur"
 system_template = "Translate the following into {language}:"
 prompt_template = ChatPromptTemplate.from_messages([
     ('system', system_template),
     ('user', '{text}')
 ])
 
-# 2. Create model
+# Codza "2. Adım: Modeli oluştur"
 model = ChatOpenAI()
 
-# 3. Create parser
+# Codza "3. Adım: Çıktı ayrıştırıcısını oluştur"
 parser = StrOutputParser()
 
-# 4. Create chain
+# Codza "4. Adım: Zinciri oluştur"
 chain = prompt_template | model | parser
 
 
-# 4. App definition
+# Codza "5. Adım: Uygulama tanımı"
 app = FastAPI(
   title="LangChain Server",
   version="1.0",
   description="A simple API server using LangChain's Runnable interfaces",
 )
 
-# 5. Adding chain route
+# Codza "6. Adım: Zincir rotasını ekle"
 
 add_routes(
     app,
